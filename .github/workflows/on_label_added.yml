@@ -14,7 +14,7 @@ jobs:
       record_pr_workflow_id: ${{ github.event.workflow_run.id }}
       workflow_origin: ${{ github.event.repository.full_name }}
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      token: ${{ secrets.MACHAFER_GITHUB_TOKEN }}
 
   split-large-pr:
     needs: get_pr_details
@@ -32,7 +32,7 @@ jobs:
           PR_ACTION: ${{ needs.get_pr_details.outputs.prAction }}
           PR_AUTHOR: ${{ needs.get_pr_details.outputs.prAuthor }}
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.MACHAFER_GITHUB_TOKEN }}
           script: |
             const script = require('.github/scripts/comment_on_large_pr.js');
             await script({github, context, core});
